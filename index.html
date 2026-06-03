@@ -180,6 +180,72 @@
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-2027 {
+      max-width: 560px;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(58,104,40,0.18) 0%, rgba(200,146,42,0.1) 100%);
+      border: 1px solid rgba(200,146,42,0.4);
+      border-radius: 6px;
+      padding: 1.8rem 2rem;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s, transform 0.18s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-2027::before {
+      content: '2027';
+      position: absolute;
+      right: -0.5rem; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cinzel', serif;
+      font-size: 6rem;
+      font-weight: 900;
+      color: rgba(200,146,42,0.06);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .card-2027:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(58,104,40,0.25) 0%, rgba(200,146,42,0.15) 100%);
+    }
+
+    .card-2027-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-2027-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-2027-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-2027-cta {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
     }
 
     .hint-btn {
@@ -517,6 +583,7 @@
       <li><button onclick="showView('members')"  id="nb-members">Members</button></li>
       <li><button onclick="showView('handicaps')" id="nb-handicaps">Handicaps</button></li>
       <li><button onclick="showView('wallet')"   id="nb-wallet">Wallet</button></li>
+      <li><button onclick="showView('2027')"     id="nb-2027">2027</button></li>
     </ul>
   </nav>
 
@@ -547,6 +614,16 @@
         <button class="hint-btn" onclick="showView('members')">Members</button>
         <button class="hint-btn" onclick="showView('handicaps')">Handicaps</button>
         <button class="hint-btn" onclick="showView('wallet')">Wallet</button>
+      </div>
+
+      <div class="card-2027" onclick="showView('2027')">
+        <p class="card-2027-eyebrow">Coming Soon</p>
+        <h3 class="card-2027-title">Zulu Slice 2027</h3>
+        <p class="card-2027-body">
+          The third edition of The Zulu Slice returns to Champagne Sports Resort in the Drakensberg.
+          Dates, format details, and registration will be announced here — watch this space.
+        </p>
+        <p class="card-2027-cta">View Details &rarr;</p>
       </div>
     </div>
   </div>
@@ -663,6 +740,76 @@
     </div>
   </div>
 
+  <!-- 2027 -->
+  <div class="view" id="view-2027">
+    <div class="page-inner">
+      <div class="page-header">
+        <div>
+          <p class="page-label">Coming Soon</p>
+          <h2 class="page-title">Zulu Slice 2027</h2>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.1rem;margin-bottom:2.5rem">
+        <div class="w-card">
+          <p class="w-lbl">Venue</p>
+          <p style="font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:var(--cream);margin-top:0.3rem">Champagne Sports Resort</p>
+          <p class="w-sub">Drakensberg, KwaZulu-Natal</p>
+        </div>
+        <div class="w-card">
+          <p class="w-lbl">Dates</p>
+          <p style="font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:var(--cream);margin-top:0.3rem">TBC</p>
+          <p class="w-sub">Announcement coming soon</p>
+        </div>
+        <div class="w-card">
+          <p class="w-lbl">Edition</p>
+          <p style="font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:var(--cream);margin-top:0.3rem">3rd Annual</p>
+          <p class="w-sub">Following 2025 &amp; 2026</p>
+        </div>
+        <div class="w-card">
+          <p class="w-lbl">Players</p>
+          <p style="font-family:'Cinzel',serif;font-size:1rem;font-weight:600;color:var(--cream);margin-top:0.3rem">12</p>
+          <p class="w-sub">Invitational field</p>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2rem;margin-bottom:1.5rem">
+        <p class="page-label" style="margin-bottom:0.75rem">About the Tour</p>
+        <p style="font-size:0.92rem;color:var(--muted);line-height:1.85;margin-bottom:1rem">
+          The Zulu Slice is an annual invitational golf tour played at one of South Africa's finest courses —
+          Champagne Sports Resort nestled in the dramatic Drakensberg mountains. Each year 12 members
+          compete across rounds for the coveted Zulu Slice title, with handicaps tracked throughout the season.
+        </p>
+        <p style="font-size:0.92rem;color:var(--muted);line-height:1.85">
+          Full details for the 2027 edition — including dates, format, prize structure, and registration —
+          will be posted here as they are confirmed. Check back soon.
+        </p>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2rem">
+        <p class="page-label" style="margin-bottom:0.75rem">Format</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem">
+          <div>
+            <p style="font-family:'Cinzel',serif;font-size:0.78rem;color:var(--cream);margin-bottom:0.3rem">Scoring</p>
+            <p style="font-size:0.83rem;color:var(--muted)">Stableford — net scoring off Zulu Slice handicap</p>
+          </div>
+          <div>
+            <p style="font-family:'Cinzel',serif;font-size:0.78rem;color:var(--cream);margin-bottom:0.3rem">Rounds</p>
+            <p style="font-size:0.83rem;color:var(--muted)">TBC</p>
+          </div>
+          <div>
+            <p style="font-family:'Cinzel',serif;font-size:0.78rem;color:var(--cream);margin-bottom:0.3rem">Course</p>
+            <p style="font-size:0.83rem;color:var(--muted)">Champagne Sports Resort Golf Club</p>
+          </div>
+          <div>
+            <p style="font-family:'Cinzel',serif;font-size:0.78rem;color:var(--cream);margin-bottom:0.3rem">Subs</p>
+            <p style="font-size:0.83rem;color:var(--muted)">TBC — see Wallet for breakdown</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- MEMBER MODAL -->
   <div class="overlay" id="memberModal">
     <div class="modal">
@@ -763,8 +910,8 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
     // View routing
-    const views   = ['home','members','handicaps','wallet'];
-    const navBtns = { members: 'nb-members', handicaps: 'nb-handicaps', wallet: 'nb-wallet' };
+    const views   = ['home','members','handicaps','wallet','2027'];
+    const navBtns = { members: 'nb-members', handicaps: 'nb-handicaps', wallet: 'nb-wallet', '2027': 'nb-2027' };
 
     function showView(name) {
       views.forEach(v => {
