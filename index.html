@@ -10,17 +10,19 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #0E0A05;
-      --card:    #1C1208;
-      --card2:   #251A0C;
-      --gold:    #C8922A;
-      --gold2:   #E8B84B;
-      --cream:   #F2E8D2;
-      --green:   #3A6828;
-      --red:     #922020;
-      --border:  rgba(200,146,42,0.2);
-      --muted:   rgba(242,232,210,0.5);
-      --text:    #F2E8D2;
+      --bg:      #0F1C0C;
+      --card:    #172414;
+      --card2:   #1E2E1A;
+      --gold:    #D4A030;
+      --gold2:   #EEC050;
+      --cream:   #F4EDD8;
+      --green:   #4A8030;
+      --red:     #C83030;
+      --blue:    #3060C0;
+      --border:  rgba(74,128,48,0.35);
+      --border2: rgba(212,160,48,0.25);
+      --muted:   rgba(244,237,216,0.48);
+      --text:    #F4EDD8;
     }
 
     html, body { height: 100%; overflow: hidden; }
@@ -37,7 +39,7 @@
     /* ── NAV ── */
     nav {
       flex-shrink: 0;
-      background: rgba(14,10,5,0.97);
+      background: rgba(12,22,10,0.97);
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -103,8 +105,9 @@
       text-align: center;
       padding: 2rem;
       background:
-        radial-gradient(ellipse at 50% 60%, rgba(58,104,40,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 50% 30%, rgba(200,146,42,0.07) 0%, transparent 55%);
+        radial-gradient(ellipse at 50% 55%, rgba(74,128,48,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse at 30% 20%, rgba(212,160,48,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(48,96,192,0.07) 0%, transparent 45%);
     }
 
     .home-title {
@@ -136,11 +139,11 @@
     }
 
     .bead { width: 10px; height: 10px; border-radius: 50%; }
-    .br { background: #922020; }
-    .bg { background: #C8922A; }
-    .bw { background: #F2E8D2; }
-    .bd { background: #1A4A2A; }
-    .bb { background: #1A2A6A; }
+    .br { background: #E03030; }
+    .bg { background: #E8B030; }
+    .bw { background: #F4EDD8; }
+    .bd { background: #30A050; }
+    .bb { background: #3070E0; }
 
     .home-location {
       font-size: clamp(0.78rem, 2vw, 0.92rem);
@@ -580,11 +583,7 @@
   <nav>
     <span class="nav-brand" onclick="showView('home')">THE <span>ZULU</span> SLICE</span>
     <ul class="nav-links">
-      <li><button onclick="showView('members')"    id="nb-members">Members</button></li>
-      <li><button onclick="showView('handicaps')"  id="nb-handicaps">Handicaps</button></li>
-      <li><button onclick="showView('wallet')"     id="nb-wallet">Wallet</button></li>
       <li><button onclick="showView('past-tours')" id="nb-past-tours">Past Tours</button></li>
-      <li><button onclick="showView('2027')"       id="nb-2027">2027</button></li>
     </ul>
   </nav>
 
@@ -952,7 +951,7 @@
 
     // View routing
     const views   = ['home','members','handicaps','wallet','past-tours','tour-2026','tour-2025','2027'];
-    const navBtns = { members: 'nb-members', handicaps: 'nb-handicaps', wallet: 'nb-wallet', 'past-tours': 'nb-past-tours', '2027': 'nb-2027' };
+    const navBtns = { 'past-tours': 'nb-past-tours' };
 
     function showView(name) {
       views.forEach(v => {
