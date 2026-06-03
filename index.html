@@ -10,150 +10,159 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0C0804;
-      --bg-card:   #1A1208;
-      --bg-card-2: #241A0C;
-      --gold:      #C8922A;
-      --gold-2:    #E8B84B;
-      --cream:     #F0E6CC;
-      --red:       #922020;
-      --green:     #2A5020;
-      --border:    rgba(200,146,42,0.22);
-      --text:      #F0E6CC;
-      --muted:     rgba(240,230,204,0.5);
+      --bg:      #0E0A05;
+      --card:    #1C1208;
+      --card2:   #251A0C;
+      --gold:    #C8922A;
+      --gold2:   #E8B84B;
+      --cream:   #F2E8D2;
+      --green:   #3A6828;
+      --red:     #922020;
+      --border:  rgba(200,146,42,0.2);
+      --muted:   rgba(242,232,210,0.5);
+      --text:    #F2E8D2;
     }
 
-    html { scroll-behavior: smooth; }
+    html, body { height: 100%; overflow: hidden; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Lato', sans-serif;
       font-weight: 300;
-      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(12,8,4,0.96);
-      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      background: rgba(14,10,5,0.97);
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 2.5rem;
-      height: 64px;
+      height: 60px;
+      z-index: 10;
     }
 
-    .nav-logo img {
-      height: 42px;
-      width: auto;
-    }
-
-    .nav-logo-text {
+    .nav-brand {
       font-family: 'Cinzel', serif;
-      font-size: 1rem;
       font-weight: 900;
-      letter-spacing: 0.2em;
+      font-size: 1rem;
+      letter-spacing: 0.22em;
       color: var(--cream);
-      display: none;
+      text-decoration: none;
+      cursor: pointer;
     }
+
+    .nav-brand span { color: var(--gold); }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: 0.25rem;
       list-style: none;
     }
 
-    .nav-links a {
+    .nav-links button {
+      background: none;
+      border: none;
       color: var(--muted);
-      text-decoration: none;
       font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      transition: color 0.2s;
+      cursor: pointer;
+      padding: 0.45rem 1rem;
+      border-radius: 2px;
+      transition: color 0.2s, background 0.2s;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--gold); }
+    .nav-links button:hover { color: var(--gold); }
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    .nav-links button.active {
+      color: var(--gold);
+      background: rgba(200,146,42,0.1);
+    }
+
+    /* ── VIEWS ── */
+    .view {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .view.active { display: flex; flex-direction: column; }
+
+    /* ── HOME ── */
+    #view-home {
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 80px 2rem 5rem;
-      position: relative;
-      overflow: hidden;
+      padding: 2rem;
+      background:
+        radial-gradient(ellipse at 50% 60%, rgba(58,104,40,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 30%, rgba(200,146,42,0.07) 0%, transparent 55%);
     }
 
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 40%, rgba(200,146,42,0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .hero-logo {
-      width: min(300px, 68vw);
-      margin-bottom: 2.5rem;
-      position: relative;
-    }
-
-    .hero-logo-fallback {
+    .home-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(2rem, 8vw, 3.5rem);
       font-weight: 900;
+      font-size: clamp(2.8rem, 8vw, 5rem);
       color: var(--cream);
-      letter-spacing: 0.1em;
-      line-height: 1.1;
-      margin-bottom: 2rem;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
     }
 
-    .hero-label {
+    .home-title-sub {
       font-family: 'Cinzel', serif;
-      font-size: clamp(0.65rem, 1.8vw, 0.8rem);
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+      font-weight: 400;
+      letter-spacing: 0.55em;
       color: var(--gold);
-      margin-bottom: 0.6rem;
-    }
-
-    .hero-location {
-      font-size: clamp(0.8rem, 2vw, 0.95rem);
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      margin-bottom: 2rem;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
     }
 
     .bead-strip {
       display: flex;
       align-items: center;
-      gap: 5px;
-      margin: 0 auto 2rem;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 1.8rem;
     }
 
-    .bead {
-      width: 9px; height: 9px;
-      border-radius: 50%;
-    }
+    .bead { width: 10px; height: 10px; border-radius: 50%; }
     .br { background: #922020; }
     .bg { background: #C8922A; }
-    .bw { background: #F0E6CC; }
+    .bw { background: #F2E8D2; }
     .bd { background: #1A4A2A; }
-    .bb { background: #1A2A5A; }
+    .bb { background: #1A2A6A; }
+
+    .home-location {
+      font-size: clamp(0.78rem, 2vw, 0.92rem);
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.4rem;
+    }
+
+    .home-course {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.7rem, 1.8vw, 0.82rem);
+      letter-spacing: 0.25em;
+      color: var(--green);
+      filter: brightness(1.4);
+      margin-bottom: 2rem;
+    }
 
     .years {
       display: flex;
       gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
     }
 
     .year-pill {
@@ -166,54 +175,86 @@
       border-radius: 2px;
     }
 
-    /* ── SECTION SHELL ── */
-    .section-wrap {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
+    .home-nav-hints {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-label {
+    .hint-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--cream);
       font-family: 'Cinzel', serif;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+
+    .hint-btn:hover {
+      border-color: var(--gold);
+      background: var(--card2);
+      color: var(--gold);
+    }
+
+    /* ── SHARED SECTION CHROME ── */
+    .page-inner {
+      max-width: 1060px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    .page-header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .page-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
       letter-spacing: 0.38em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.4rem;
     }
 
-    .section-title {
+    .page-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
       font-weight: 600;
       color: var(--cream);
-      margin-bottom: 1rem;
     }
 
-    .section-rule {
-      width: 52px;
-      height: 2px;
-      background: var(--gold);
-      margin: 0 auto;
+    .page-count {
+      font-size: 0.8rem;
+      color: var(--muted);
+      align-self: flex-end;
     }
 
     /* ── MEMBERS ── */
     .members-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 1.1rem;
     }
 
     .member-card {
-      background: var(--bg-card);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 1.5rem 1rem 1.25rem;
+      padding: 1.4rem 1rem 1.1rem;
       text-align: center;
       cursor: pointer;
       transition: border-color 0.2s, transform 0.18s, background 0.2s;
@@ -221,41 +262,37 @@
 
     .member-card:hover {
       border-color: var(--gold);
-      background: var(--bg-card-2);
+      background: var(--card2);
       transform: translateY(-3px);
     }
 
     .avatar {
-      width: 68px; height: 68px;
+      width: 64px; height: 64px;
       border-radius: 50%;
-      background: var(--bg-card-2);
+      background: var(--card2);
       border: 2px solid var(--border);
-      margin: 0 auto 0.9rem;
+      margin: 0 auto 0.85rem;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       color: var(--gold);
       overflow: hidden;
     }
 
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-    .member-name {
+    .m-name {
       font-family: 'Cinzel', serif;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--cream);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
     }
 
-    .member-hc {
-      font-size: 0.73rem;
-      color: var(--muted);
-    }
-
-    .member-hc strong { color: var(--gold-2); }
+    .m-hc { font-size: 0.7rem; color: var(--muted); }
+    .m-hc strong { color: var(--gold2); }
 
     /* ── MODAL ── */
     .overlay {
@@ -272,272 +309,202 @@
     .overlay.open { display: flex; }
 
     .modal {
-      background: var(--bg-card);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 6px;
       width: min(580px, 96vw);
-      max-height: 90vh;
+      max-height: 88vh;
       overflow-y: auto;
       padding: 2rem;
       position: relative;
     }
 
-    .modal-close {
+    .modal-x {
       position: absolute;
-      top: 1rem; right: 1.1rem;
+      top: 1rem; right: 1rem;
       background: none; border: none;
-      color: var(--muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-      line-height: 1;
+      color: var(--muted); font-size: 1.5rem;
+      cursor: pointer; line-height: 1;
       transition: color 0.2s;
     }
 
-    .modal-close:hover { color: var(--gold); }
+    .modal-x:hover { color: var(--gold); }
 
     .modal-top {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.75rem;
-      padding-bottom: 1.5rem;
+      gap: 1.4rem;
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.4rem;
       border-bottom: 1px solid var(--border);
     }
 
-    .modal-avatar {
-      width: 76px; height: 76px;
+    .modal-av {
+      width: 72px; height: 72px;
       border-radius: 50%;
-      background: var(--bg-card-2);
+      background: var(--card2);
       border: 2px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: var(--gold);
       flex-shrink: 0;
     }
 
-    .modal-player-name {
+    .modal-pname {
       font-family: 'Cinzel', serif;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: var(--cream);
     }
 
-    .modal-player-meta {
-      color: var(--muted);
-      font-size: 0.82rem;
-      margin-top: 0.2rem;
-    }
+    .modal-pmeta { color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; }
 
     .stat-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.9rem;
-      margin-bottom: 1.75rem;
+      grid-template-columns: repeat(3,1fr);
+      gap: 0.85rem;
+      margin-bottom: 1.6rem;
     }
 
     .stat-box {
-      background: var(--bg-card-2);
+      background: var(--card2);
       border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.9rem;
+      border-radius: 3px;
+      padding: 0.85rem;
       text-align: center;
     }
 
-    .stat-val {
+    .sv {
       font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: var(--gold);
     }
 
-    .stat-lbl {
-      font-size: 0.68rem;
+    .sl {
+      font-size: 0.65rem;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-top: 0.2rem;
     }
 
-    .rounds-tbl {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.84rem;
-    }
-
+    .rounds-tbl { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
     .rounds-tbl th {
       font-family: 'Cinzel', serif;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.1em;
       color: var(--gold);
       text-align: left;
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 0.7rem;
       border-bottom: 1px solid var(--border);
     }
-
-    .rounds-tbl td {
-      padding: 0.6rem 0.75rem;
-      border-bottom: 1px solid rgba(200,146,42,0.08);
-    }
-
+    .rounds-tbl td { padding: 0.6rem 0.7rem; border-bottom: 1px solid rgba(200,146,42,0.08); }
     .rounds-tbl tr:last-child td { border-bottom: none; }
 
     /* ── HANDICAPS ── */
     .hc-wrap { overflow-x: auto; }
 
-    .hc-tbl {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
+    .hc-tbl { width: 100%; border-collapse: collapse; }
     .hc-tbl th {
       font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       letter-spacing: 0.14em;
       color: var(--gold);
       text-align: left;
-      padding: 0.75rem 1rem;
+      padding: 0.7rem 1rem;
       border-bottom: 2px solid var(--border);
       white-space: nowrap;
     }
+    .hc-tbl td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(200,146,42,0.08); font-size: 0.88rem; }
+    .hc-tbl tr:hover td { background: var(--card2); cursor: pointer; }
 
-    .hc-tbl td {
-      padding: 0.85rem 1rem;
-      border-bottom: 1px solid rgba(200,146,42,0.09);
-      font-size: 0.88rem;
-    }
+    .rk { font-family: 'Cinzel', serif; font-weight: 600; color: var(--gold); }
+    .rk-1 { color: #E8B84B; font-size: 1.05rem; }
 
-    .hc-tbl tr:hover td { background: var(--bg-card-2); }
-
-    .rank-num {
-      font-family: 'Cinzel', serif;
-      font-weight: 600;
-      color: var(--gold);
-    }
-
-    .hc-badge {
+    .badge {
       display: inline-block;
-      padding: 0.18rem 0.6rem;
+      padding: 0.18rem 0.55rem;
       border-radius: 2px;
       font-weight: 700;
-      font-size: 0.84rem;
+      font-size: 0.83rem;
     }
 
-    .hc-low  { background: rgba(42,80,32,0.4);  color: #7ed87e; border: 1px solid #2a5020; }
-    .hc-mid  { background: rgba(200,146,42,0.14); color: var(--gold-2); border: 1px solid rgba(200,146,42,0.3); }
-    .hc-high { background: rgba(146,32,32,0.25); color: #e07070; border: 1px solid rgba(146,32,32,0.4); }
-    .hc-na   { background: rgba(80,80,80,0.2);  color: var(--muted); border: 1px solid rgba(120,120,120,0.2); }
+    .b-low  { background: rgba(42,80,32,0.4);  color: #7ed87e; border: 1px solid #2a5020; }
+    .b-mid  { background: rgba(200,146,42,0.14); color: var(--gold2); border: 1px solid rgba(200,146,42,0.3); }
+    .b-high { background: rgba(146,32,32,0.25); color: #e07070; border: 1px solid rgba(146,32,32,0.4); }
+    .b-na   { background: rgba(80,80,80,0.2);   color: var(--muted); border: 1px solid rgba(120,120,120,0.2); }
 
     /* ── WALLET ── */
     .wallet-summary {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.1rem;
+      margin-bottom: 2.5rem;
     }
 
     .w-card {
-      background: var(--bg-card);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 1.5rem;
+      padding: 1.4rem;
     }
 
-    .w-card-label {
+    .w-lbl {
       font-family: 'Cinzel', serif;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
 
-    .w-amount {
+    .w-amt {
       font-family: 'Cinzel', serif;
-      font-size: 1.9rem;
+      font-size: 1.85rem;
       font-weight: 600;
       color: var(--cream);
     }
 
-    .w-amount .curr {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-right: 0.15rem;
-    }
+    .w-amt .curr { font-size: 0.9rem; color: var(--muted); margin-right: 0.1rem; }
+    .w-sub { font-size: 0.76rem; color: var(--muted); margin-top: 0.2rem; }
 
-    .w-sub {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.25rem;
-    }
-
-    .ledger-tbl {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
+    .ledger-tbl { width: 100%; border-collapse: collapse; }
     .ledger-tbl th {
       font-family: 'Cinzel', serif;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.14em;
       color: var(--gold);
       text-align: left;
-      padding: 0.75rem 1rem;
+      padding: 0.7rem 1rem;
       border-bottom: 2px solid var(--border);
     }
-
-    .ledger-tbl td {
-      padding: 0.85rem 1rem;
-      border-bottom: 1px solid rgba(200,146,42,0.09);
-      font-size: 0.86rem;
-    }
-
-    .ledger-tbl tr:hover td { background: var(--bg-card-2); }
+    .ledger-tbl td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(200,146,42,0.08); font-size: 0.85rem; }
+    .ledger-tbl tr:hover td { background: var(--card2); }
 
     .pill {
       display: inline-block;
-      padding: 0.15rem 0.55rem;
+      padding: 0.14rem 0.5rem;
       border-radius: 2px;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.04em;
     }
 
-    .p-paid    { background: rgba(42,80,32,0.4); color: #7ed87e; border: 1px solid #2a5020; }
-    .p-pending { background: rgba(200,146,42,0.15); color: var(--gold-2); border: 1px solid rgba(200,146,42,0.3); }
-    .p-upcoming{ background: rgba(60,60,100,0.35); color: #9090dd; border: 1px solid rgba(80,80,140,0.4); }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem;
-      text-align: center;
-    }
-
-    .footer-name {
-      font-family: 'Cinzel', serif;
-      font-size: 0.88rem;
-      letter-spacing: 0.25em;
-      color: var(--gold);
-      margin-bottom: 0.4rem;
-    }
-
-    .footer-sub {
-      font-size: 0.78rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-    }
+    .p-paid     { background: rgba(42,80,32,0.4);   color: #7ed87e; border: 1px solid #2a5020; }
+    .p-pending  { background: rgba(200,146,42,0.15); color: var(--gold2); border: 1px solid rgba(200,146,42,0.3); }
+    .p-upcoming { background: rgba(60,60,100,0.35);  color: #9090dd; border: 1px solid rgba(80,80,140,0.4); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 580px) {
-      nav { padding: 0 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      .nav-links a { font-size: 0.62rem; }
-      .section-wrap { padding: 4rem 1.25rem; }
-      .stat-row { grid-template-columns: repeat(2, 1fr); }
-      .modal { padding: 1.5rem; }
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-brand { font-size: 0.8rem; letter-spacing: 0.12em; }
+      .nav-links button { padding: 0.4rem 0.6rem; font-size: 0.62rem; letter-spacing: 0.1em; }
+      .page-inner { padding: 2rem 1rem 3rem; }
+      .stat-row { grid-template-columns: repeat(2,1fr); }
+      html, body { overflow: hidden; }
+      .view { overflow-y: auto; }
     }
   </style>
 </head>
@@ -545,58 +512,67 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#hero" style="display:flex;align-items:center;text-decoration:none">
-      <img src="logo.png" alt="The Zulu Slice" style="height:42px;width:auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <span class="nav-logo-text" style="display:none">THE ZULU SLICE</span>
-    </a>
+    <span class="nav-brand" onclick="showView('home')">THE <span>ZULU</span> SLICE</span>
     <ul class="nav-links">
-      <li><a href="#members">Members</a></li>
-      <li><a href="#handicaps">Handicaps</a></li>
-      <li><a href="#wallet">Wallet</a></li>
+      <li><button onclick="showView('members')"  id="nb-members">Members</button></li>
+      <li><button onclick="showView('handicaps')" id="nb-handicaps">Handicaps</button></li>
+      <li><button onclick="showView('wallet')"   id="nb-wallet">Wallet</button></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <img class="hero-logo" src="logo.png" alt="The Zulu Slice"
-         onerror="this.style.display='none';document.querySelector('.hero-logo-fallback').style.display='block'">
-    <div class="hero-logo-fallback" style="display:none">THE<br>ZULU SLICE</div>
+  <!-- HOME -->
+  <div class="view active" id="view-home">
+    <div style="margin:auto;text-align:center;padding:2rem">
+      <p style="font-family:'Cinzel',serif;font-size:clamp(0.6rem,1.5vw,0.72rem);letter-spacing:0.45em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem">Est. 2025</p>
+      <h1 class="home-title">THE ZULU SLICE</h1>
+      <p class="home-title-sub">Golf Tour</p>
 
-    <p class="hero-label">Annual Golf Tour</p>
-    <p class="hero-location">Champagne Sports Resort &nbsp;·&nbsp; Drakensberg</p>
+      <div class="bead-strip">
+        <div class="bead br"></div><div class="bead bg"></div><div class="bead bw"></div>
+        <div class="bead bd"></div><div class="bead bb"></div><div class="bead br"></div>
+        <div class="bead bg"></div><div class="bead bw"></div><div class="bead bd"></div>
+        <div class="bead bb"></div><div class="bead br"></div><div class="bead bg"></div>
+        <div class="bead bw"></div>
+      </div>
 
-    <div class="bead-strip">
-      <div class="bead br"></div><div class="bead bg"></div><div class="bead bw"></div>
-      <div class="bead bd"></div><div class="bead bb"></div><div class="bead br"></div>
-      <div class="bead bg"></div><div class="bead bw"></div><div class="bead bd"></div>
-      <div class="bead bb"></div><div class="bead br"></div>
+      <p class="home-location">Champagne Sports Resort &nbsp;·&nbsp; Drakensberg</p>
+      <p class="home-course">One of the finest courses in the world</p>
+
+      <div class="years">
+        <div class="year-pill">2025</div>
+        <div class="year-pill">2026</div>
+      </div>
+
+      <div class="home-nav-hints">
+        <button class="hint-btn" onclick="showView('members')">Members</button>
+        <button class="hint-btn" onclick="showView('handicaps')">Handicaps</button>
+        <button class="hint-btn" onclick="showView('wallet')">Wallet</button>
+      </div>
     </div>
-
-    <div class="years">
-      <div class="year-pill">2025</div>
-      <div class="year-pill">2026</div>
-    </div>
-  </section>
+  </div>
 
   <!-- MEMBERS -->
-  <div id="members">
-    <div class="section-wrap">
-      <div class="section-header">
-        <p class="section-label">The Brotherhood</p>
-        <h2 class="section-title">Members</h2>
-        <div class="section-rule"></div>
+  <div class="view" id="view-members">
+    <div class="page-inner">
+      <div class="page-header">
+        <div>
+          <p class="page-label">The Brotherhood</p>
+          <h2 class="page-title">Members</h2>
+        </div>
+        <span class="page-count">12 members</span>
       </div>
       <div class="members-grid" id="membersGrid"></div>
     </div>
   </div>
 
   <!-- HANDICAPS -->
-  <div id="handicaps" style="background:var(--bg-card)">
-    <div class="section-wrap">
-      <div class="section-header">
-        <p class="section-label">The Standings</p>
-        <h2 class="section-title">Handicaps</h2>
-        <div class="section-rule"></div>
+  <div class="view" id="view-handicaps">
+    <div class="page-inner">
+      <div class="page-header">
+        <div>
+          <p class="page-label">The Standings</p>
+          <h2 class="page-title">Handicaps</h2>
+        </div>
       </div>
       <div class="hc-wrap">
         <table class="hc-tbl">
@@ -616,28 +592,29 @@
   </div>
 
   <!-- WALLET -->
-  <div id="wallet">
-    <div class="section-wrap">
-      <div class="section-header">
-        <p class="section-label">Full Transparency</p>
-        <h2 class="section-title">The Wallet</h2>
-        <div class="section-rule"></div>
+  <div class="view" id="view-wallet">
+    <div class="page-inner">
+      <div class="page-header">
+        <div>
+          <p class="page-label">Full Transparency</p>
+          <h2 class="page-title">The Wallet</h2>
+        </div>
       </div>
 
       <div class="wallet-summary">
         <div class="w-card">
-          <p class="w-card-label">Annual Subs</p>
-          <p class="w-amount"><span class="curr">R</span>TBC</p>
+          <p class="w-lbl">Annual Subs</p>
+          <p class="w-amt"><span class="curr">R</span>TBC</p>
           <p class="w-sub">Per member · 2026 season</p>
         </div>
         <div class="w-card">
-          <p class="w-card-label">Total Collected</p>
-          <p class="w-amount"><span class="curr">R</span>TBC</p>
+          <p class="w-lbl">Total Collected</p>
+          <p class="w-amt"><span class="curr">R</span>TBC</p>
           <p class="w-sub">12 members</p>
         </div>
         <div class="w-card">
-          <p class="w-card-label">Total Spent</p>
-          <p class="w-amount"><span class="curr">R</span>TBC</p>
+          <p class="w-lbl">Total Spent</p>
+          <p class="w-amt"><span class="curr">R</span>TBC</p>
           <p class="w-sub">See ledger below</p>
         </div>
       </div>
@@ -686,33 +663,21 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p class="footer-name">THE ZULU SLICE</p>
-    <p class="footer-sub">Champagne Sports Resort · Drakensberg · Est. 2025</p>
-  </footer>
-
   <!-- MEMBER MODAL -->
   <div class="overlay" id="memberModal">
     <div class="modal">
-      <button class="modal-close" onclick="closeModal()">×</button>
+      <button class="modal-x" onclick="closeModal()">×</button>
       <div class="modal-top">
-        <div class="modal-avatar" id="mAvatar"></div>
+        <div class="modal-av" id="mAv"></div>
         <div>
-          <p class="modal-player-name" id="mName"></p>
-          <p class="modal-player-meta" id="mMeta"></p>
+          <p class="modal-pname" id="mName"></p>
+          <p class="modal-pmeta" id="mMeta"></p>
         </div>
       </div>
       <div class="stat-row" id="mStats"></div>
       <table class="rounds-tbl">
         <thead>
-          <tr>
-            <th>Year</th>
-            <th>Round</th>
-            <th>Course</th>
-            <th>Gross</th>
-            <th>Net</th>
-          </tr>
+          <tr><th>Year</th><th>Round</th><th>Course</th><th>Gross</th><th>Net</th></tr>
         </thead>
         <tbody id="mRounds"></tbody>
       </table>
@@ -735,37 +700,36 @@
       { id:12, name:'Player Twelve',  initials:'P12', zsHc:'--', officialHc:'--', rounds:[] },
     ];
 
-    function hcClass(val) {
-      if (val === '--') return 'hc-na';
-      const n = parseFloat(val);
-      if (n <= 10) return 'hc-low';
-      if (n <= 20) return 'hc-mid';
-      return 'hc-high';
+    function hcClass(v) {
+      if (v === '--') return 'b-na';
+      const n = parseFloat(v);
+      return n <= 10 ? 'b-low' : n <= 20 ? 'b-mid' : 'b-high';
     }
 
     // Members grid
     const grid = document.getElementById('membersGrid');
     members.forEach(m => {
-      const card = document.createElement('div');
-      card.className = 'member-card';
-      card.innerHTML = `
+      const c = document.createElement('div');
+      c.className = 'member-card';
+      c.innerHTML = `
         <div class="avatar">${m.initials}</div>
-        <p class="member-name">${m.name}</p>
-        <p class="member-hc">ZS HC: <strong>${m.zsHc}</strong></p>
+        <p class="m-name">${m.name}</p>
+        <p class="m-hc">ZS HC: <strong>${m.zsHc}</strong></p>
       `;
-      card.onclick = () => openModal(m);
-      grid.appendChild(card);
+      c.onclick = () => openModal(m);
+      grid.appendChild(c);
     });
 
     // Handicap table
     const hcBody = document.getElementById('hcBody');
     members.forEach((m, i) => {
       const tr = document.createElement('tr');
+      tr.onclick = () => openModal(m);
       tr.innerHTML = `
-        <td class="rank-num">${i + 1}</td>
+        <td class="rk ${i === 0 ? 'rk-1' : ''}">${i + 1}</td>
         <td>${m.name}</td>
-        <td><span class="hc-badge ${hcClass(m.zsHc)}">${m.zsHc}</span></td>
-        <td><span class="hc-badge ${hcClass(m.officialHc)}">${m.officialHc}</span></td>
+        <td><span class="badge ${hcClass(m.zsHc)}">${m.zsHc}</span></td>
+        <td><span class="badge ${hcClass(m.officialHc)}">${m.officialHc}</span></td>
         <td>${m.rounds.length}</td>
       `;
       hcBody.appendChild(tr);
@@ -773,25 +737,18 @@
 
     // Modal
     function openModal(m) {
-      document.getElementById('mAvatar').textContent = m.initials;
+      document.getElementById('mAv').textContent = m.initials;
       document.getElementById('mName').textContent = m.name;
       document.getElementById('mMeta').textContent = `${m.rounds.length} round${m.rounds.length !== 1 ? 's' : ''} played`;
-
       document.getElementById('mStats').innerHTML = `
-        <div class="stat-box"><div class="stat-val">${m.zsHc}</div><div class="stat-lbl">ZS Handicap</div></div>
-        <div class="stat-box"><div class="stat-val">${m.officialHc}</div><div class="stat-lbl">Official HC</div></div>
-        <div class="stat-box"><div class="stat-val">${m.rounds.length}</div><div class="stat-lbl">Rounds</div></div>
+        <div class="stat-box"><div class="sv">${m.zsHc}</div><div class="sl">ZS Handicap</div></div>
+        <div class="stat-box"><div class="sv">${m.officialHc}</div><div class="sl">Official HC</div></div>
+        <div class="stat-box"><div class="sv">${m.rounds.length}</div><div class="sl">Rounds</div></div>
       `;
-
-      const tbody = document.getElementById('mRounds');
-      tbody.innerHTML = m.rounds.length
-        ? m.rounds.map(r => `
-            <tr>
-              <td>${r.year}</td><td>${r.round}</td><td>${r.course}</td>
-              <td>${r.gross}</td><td>${r.net}</td>
-            </tr>`).join('')
+      const tb = document.getElementById('mRounds');
+      tb.innerHTML = m.rounds.length
+        ? m.rounds.map(r => `<tr><td>${r.year}</td><td>${r.round}</td><td>${r.course}</td><td>${r.gross}</td><td>${r.net}</td></tr>`).join('')
         : `<tr><td colspan="5" style="color:var(--muted);text-align:center;padding:1.5rem 0">No rounds recorded yet</td></tr>`;
-
       document.getElementById('memberModal').classList.add('open');
     }
 
@@ -803,22 +760,20 @@
       if (e.target === e.currentTarget) closeModal();
     });
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeModal();
-    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    // Active nav highlight
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY + 80;
-      let cur = 'hero';
-      ['members','handicaps','wallet'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el && scrollY >= el.offsetTop) cur = id;
+    // View routing
+    const views   = ['home','members','handicaps','wallet'];
+    const navBtns = { members: 'nb-members', handicaps: 'nb-handicaps', wallet: 'nb-wallet' };
+
+    function showView(name) {
+      views.forEach(v => {
+        document.getElementById('view-' + v).classList.toggle('active', v === name);
       });
-      document.querySelectorAll('.nav-links a').forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+      Object.entries(navBtns).forEach(([k, id]) => {
+        document.getElementById(id).classList.toggle('active', k === name);
       });
-    });
+    }
   </script>
 </body>
 </html>
