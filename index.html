@@ -580,10 +580,11 @@
   <nav>
     <span class="nav-brand" onclick="showView('home')">THE <span>ZULU</span> SLICE</span>
     <ul class="nav-links">
-      <li><button onclick="showView('members')"  id="nb-members">Members</button></li>
-      <li><button onclick="showView('handicaps')" id="nb-handicaps">Handicaps</button></li>
-      <li><button onclick="showView('wallet')"   id="nb-wallet">Wallet</button></li>
-      <li><button onclick="showView('2027')"     id="nb-2027">2027</button></li>
+      <li><button onclick="showView('members')"    id="nb-members">Members</button></li>
+      <li><button onclick="showView('handicaps')"  id="nb-handicaps">Handicaps</button></li>
+      <li><button onclick="showView('wallet')"     id="nb-wallet">Wallet</button></li>
+      <li><button onclick="showView('past-tours')" id="nb-past-tours">Past Tours</button></li>
+      <li><button onclick="showView('2027')"       id="nb-2027">2027</button></li>
     </ul>
   </nav>
 
@@ -603,12 +604,6 @@
       </div>
 
       <p class="home-location">Champagne Sports Resort &nbsp;·&nbsp; Drakensberg</p>
-      <p class="home-course">One of the finest courses in the world</p>
-
-      <div class="years">
-        <div class="year-pill">2025</div>
-        <div class="year-pill">2026</div>
-      </div>
 
       <div class="home-nav-hints">
         <button class="hint-btn" onclick="showView('members')">Members</button>
@@ -619,10 +614,6 @@
       <div class="card-2027" onclick="showView('2027')">
         <p class="card-2027-eyebrow">Coming Soon</p>
         <h3 class="card-2027-title">Zulu Slice 2027</h3>
-        <p class="card-2027-body">
-          The third edition of The Zulu Slice returns to Champagne Sports Resort in the Drakensberg.
-          Dates, format details, and registration will be announced here — watch this space.
-        </p>
         <p class="card-2027-cta">View Details &rarr;</p>
       </div>
     </div>
@@ -633,7 +624,6 @@
     <div class="page-inner">
       <div class="page-header">
         <div>
-          <p class="page-label">The Brotherhood</p>
           <h2 class="page-title">Members</h2>
         </div>
         <span class="page-count">12 members</span>
@@ -737,6 +727,57 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- PAST TOURS -->
+  <div class="view" id="view-past-tours">
+    <div class="page-inner">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Past Tours</h2>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem">
+        <div class="w-card" style="cursor:pointer" onclick="showView('tour-2026')">
+          <p class="w-lbl">2nd Edition</p>
+          <p style="font-family:'Cinzel',serif;font-size:1.4rem;font-weight:700;color:var(--cream);margin:0.3rem 0 0.2rem">2026</p>
+          <p class="w-sub" style="margin-bottom:1rem">Champagne Sports Resort · Drakensberg</p>
+          <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold)">View Tour &rarr;</p>
+        </div>
+        <div class="w-card" style="cursor:pointer" onclick="showView('tour-2025')">
+          <p class="w-lbl">1st Edition</p>
+          <p style="font-family:'Cinzel',serif;font-size:1.4rem;font-weight:700;color:var(--cream);margin:0.3rem 0 0.2rem">2025</p>
+          <p class="w-sub" style="margin-bottom:1rem">Champagne Sports Resort · Drakensberg</p>
+          <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold)">View Tour &rarr;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOUR 2026 -->
+  <div class="view" id="view-tour-2026">
+    <div class="page-inner">
+      <div class="page-header">
+        <div>
+          <p class="page-label" style="cursor:pointer" onclick="showView('past-tours')">&larr; Past Tours</p>
+          <h2 class="page-title">2026 Tour</h2>
+        </div>
+      </div>
+      <p style="color:var(--muted);font-size:0.88rem">Results and details coming soon.</p>
+    </div>
+  </div>
+
+  <!-- TOUR 2025 -->
+  <div class="view" id="view-tour-2025">
+    <div class="page-inner">
+      <div class="page-header">
+        <div>
+          <p class="page-label" style="cursor:pointer" onclick="showView('past-tours')">&larr; Past Tours</p>
+          <h2 class="page-title">2025 Tour</h2>
+        </div>
+      </div>
+      <p style="color:var(--muted);font-size:0.88rem">Results and details coming soon.</p>
     </div>
   </div>
 
@@ -910,8 +951,8 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
     // View routing
-    const views   = ['home','members','handicaps','wallet','2027'];
-    const navBtns = { members: 'nb-members', handicaps: 'nb-handicaps', wallet: 'nb-wallet', '2027': 'nb-2027' };
+    const views   = ['home','members','handicaps','wallet','past-tours','tour-2026','tour-2025','2027'];
+    const navBtns = { members: 'nb-members', handicaps: 'nb-handicaps', wallet: 'nb-wallet', 'past-tours': 'nb-past-tours', '2027': 'nb-2027' };
 
     function showView(name) {
       views.forEach(v => {
